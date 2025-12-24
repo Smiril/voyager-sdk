@@ -141,7 +141,7 @@ penv:
     libs:
     - axelera-llm: "{index = \"axelera_runtime\" }"
 
-  requirements: ${AX_CFG_DIR}/requirements-ubuntu-2204-amd64.txt
+  requirements: ${AX_CFG_DIR}/requirements-ubuntu-2404-amd64.txt
 
   pyenv:
     - url: https://github.com/pyenv/pyenv.git
