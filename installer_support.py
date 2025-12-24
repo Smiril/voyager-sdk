@@ -320,6 +320,8 @@ def limit_for_hash(env, hash_type, optional):
         del env["driver"]
     if "repositories" in env:
         del env["repositories"]
+	if "media" in env:
+        del env["media"]
     if "next" in env:
         del env["next"]
 
