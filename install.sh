@@ -178,6 +178,7 @@ VAR_i="1"
 
 VAR_used_container=
 VAR_target_container=
+VAR_target_cuda=
 VAR_target_container_tag="${ARG_tag}"
 
 VAR_apt_check_system=false
@@ -3474,7 +3475,7 @@ if $ARG_print_container; then
 fi
 
 if $ARG_cuda; then
-  VAR_target_cuda=$#
+  $VAR_target_cuda
 fi
 
 # User requested activation of the environment
