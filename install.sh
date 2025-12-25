@@ -2188,11 +2188,11 @@ ensure_and_validate_user_token() {
     (Please refer to docs/tutorials/install.md for more information.)
     Email address:" ARG_user
   fi
-  if [ -z "$ARG_target_cuda" ]; then
+  if [ -z "$ARG_cuda" ]; then
     read -p "
-    Email address not provided through --user <user>.
+    cuda-toolkit not provided through --cuda <cuda-toolkit-12-8>.
     (Please refer to docs/tutorials/install.md for more information.)
-    Email address:" ARG_target_cuda
+    Toolkit:" ARG_cuda
   fi
   if [ -z "$ARG_token" ]; then
     read -p "
