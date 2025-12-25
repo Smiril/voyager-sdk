@@ -96,7 +96,7 @@ different models visually.
 
  With `--cuda cuda-toolkit-12-8` option download requested cuda-toolkit version for your NVIDIA CUDA enabled GraphicsCard.
 
-PCIe driver is installe`/lib/modules`. It contains minimal
+PCIe driver is installed to `/lib/modules`. It contains minimal
 functionality that does not generally change between releases.
 
 Most runtime functionality is provided in libraries installed to
