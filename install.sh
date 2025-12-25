@@ -680,6 +680,20 @@ check_installer_requirements_met() {
     usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
+  if is_nvidia_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    # placeholder
+    else
+    # placeholder
+    fi
+  fi
+  if is_intel_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    # placeholder
+    else
+    # placeholder
+    fi
+  fi
   declare -a installs
   local apt_update="sudo apt update"
   if is_set "$VAR_installer_apt_deps"; then
