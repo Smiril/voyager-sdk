@@ -630,13 +630,13 @@ check_installer_requirements_met() {
   fi
   if is_amd64; then
   wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-  sudo apt install ./amdgpu-install_7.1.1.70101-1_all.deb
-  sudo apt update
-  sudo apt install python3-setuptools python3-wheel
+  sudo apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+  sudo apt update -y
+  sudo apt install -y python3-setuptools python3-wheel
   sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-  sudo apt install rocm
-  sudo apt install "linux-headers-$(uname -r)"
-  sudo apt install amdgpu-dkms  
+  sudo apt install -y rocm
+  sudo apt install -y "linux-headers-$(uname -r)"
+  sudo apt install -y amdgpu-dkms  
   fi
   declare -a installs
   local apt_update="sudo apt update"
