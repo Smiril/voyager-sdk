@@ -17,6 +17,7 @@
 
 ## Prerequisites
 - Ubuntu 22.04+ , Kubuntu 22.04+ , Debian 13 or Windows with WSL2 installed
+- Intel(R) , AMD(R) or arm64 Processor
 - Python 3.10 or later
 - Git installed
 - Internet connection for downloading dependencies
