@@ -758,10 +758,11 @@ check_installer_requirements_met() {
   if is_debian_13 && is_intel_graphics || is_kubuntu_2404 && is_intel_graphics || is_ubuntu_2404 && is_intel_graphics || is_kubuntu_2204 && is_intel_graphics || is_ubuntu_2204 && is_intel_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
     sudo apt-get update
-    sudo apt-get install -y xserver-xorg-video-intel
+    sudo apt-get install -y xserver-xorg-video-intel libmfx1
     else
     apt-get update
-    apt-get install -y xserver-xorg-video-intel    fi
+    apt-get install -y xserver-xorg-video-intel libmfx1
+    fi
   fi
   declare -a installs
   local apt_update="sudo apt update"
