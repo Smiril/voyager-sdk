@@ -836,6 +836,9 @@ check_installer_requirements_met() {
       apt-get install -y xserver-xorg-video-intel libmfx1
     fi
   fi
+  #
+  # placeholder for arm64 amd graphics card driver
+  #
   if is_arm64 && is_kubuntu_2204 && is_nvidia_graphics || is_arm64 && is_ubuntu_2204 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
@@ -888,6 +891,15 @@ check_installer_requirements_met() {
       else
         apt-get -y remove --purge $ARG_cuda
       fi
+    fi
+  fi
+  if is_arm64 && is_debian_13 && is_intel_graphics || is_arm64 && is_kubuntu_2404 && is_intel_graphics || is_arm64 && is_ubuntu_2404 && is_intel_graphics || is_arm64 && is_kubuntu_2204 && is_intel_graphics || is_arm64 && is_ubuntu_2204 && is_intel_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+      sudo apt-get update
+      sudo apt-get install -y xserver-xorg-video-intel libmfx1
+    else
+      apt-get update
+      apt-get install -y xserver-xorg-video-intel libmfx1
     fi
   fi
   declare -a installs
