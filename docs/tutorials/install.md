@@ -94,7 +94,7 @@ for example [`cfg/config-ubuntu-2204-amd64.yaml`](/cfg/config-ubuntu-2204-amd64.
 The `--media` option downloads a collection of sample videos which you can use to evaluate
 different models visually.
 
-The `--cuda cuda-toolkit-12-8` option download requested cuda-toolkit version for your NVIDIA CUDA enabled GraphicsCard.
+ With `--cuda cuda-toolkit-12-8` option download requested cuda-toolkit version for your NVIDIA CUDA enabled GraphicsCard.
 
 PCIe driver is installe`/lib/modules`. It contains minimal
 functionality that does not generally change between releases.
