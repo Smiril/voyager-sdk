@@ -49,6 +49,7 @@ ARG_all=false
 ARG_artifacts=false
 ARG_media=false
 ARG_user=
+ARG_cuda=
 ARG_token=
 ARG_development=false
 ARG_no_development=false
@@ -178,7 +179,6 @@ VAR_i="1"
 
 VAR_used_container=
 VAR_target_container=
-VAR_target_cuda=
 VAR_target_container_tag="${ARG_tag}"
 
 VAR_apt_check_system=false
@@ -719,25 +719,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y install $VAR_target_cuda
+      sudo apt-get -y install $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get -y remove --purge $VAR_target_cuda
+        sudo apt-get -y remove --purge $ARG_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install $VAR_target_cuda
+      apt-get -y install $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get -y remove --purge $VAR_target_cuda
+        apt-get -y remove --purge $ARG_cuda
       fi
     fi
   fi
@@ -746,25 +746,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y $VAR_target_cuda
+      sudo apt-get -y $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get -y remove --purge $VAR_target_cuda
+        sudo apt-get -y remove --purge $ARG_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install $VAR_target_cuda
+      apt-get -y install $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get -y remove --purge $VAR_target_cuda
+        apt-get -y remove --purge $ARG_cuda
       fi
     fi
   fi
@@ -773,25 +773,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y install $VAR_target_cuda
+      sudo apt-get -y install $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get -y remove --purge $VAR_target_cuda
+        sudo apt-get -y remove --purge $ARG_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install $VAR_target_cuda
+      apt-get -y install $ARG_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get -y remove --purge $VAR_target_cuda
+        apt-get -y remove --purge $ARG_cuda
       fi
     fi
   fi
@@ -3478,10 +3478,6 @@ fi
 if $ARG_print_container; then
   echo "$VAR_target_container" "$VAR_target_container_tag"
   exit 0
-fi
-
-if $ARG_cuda; then
-    VAR_target_cuda=$#
 fi
 
 # User requested activation of the environment
