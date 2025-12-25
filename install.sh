@@ -718,25 +718,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y install cuda-toolkit-13-1
+      sudo apt-get -y install $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+        sudo apt-get -y remove --purge $VAR_target_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install cuda-toolkit-13-1
+      apt-get -y install $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get remove --purge cuda-toolkit-13-1 -y
+        apt-get -y remove --purge $VAR_target_cuda
       fi
     fi
   fi
@@ -745,25 +745,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y install cuda-toolkit-13-1
+      sudo apt-get -y $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+        sudo apt-get -y remove --purge $VAR_target_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install cuda-toolkit-13-1
+      apt-get -y install $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get remove --purge cuda-toolkit-13-1 -y
+        apt-get -y remove --purge $VAR_target_cuda
       fi
     fi
   fi
@@ -772,25 +772,25 @@ check_installer_requirements_met() {
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
-      sudo apt-get -y install cuda-toolkit-13-1
+      sudo apt-get -y install $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+        sudo apt-get -y remove --purge $VAR_target_cuda
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
-      apt-get -y install cuda-toolkit-13-1
+      apt-get -y install $VAR_target_cuda
       rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
       else
-        apt-get remove --purge cuda-toolkit-13-1 -y
+        apt-get -y remove --purge $VAR_target_cuda
       fi
     fi
   fi
@@ -3107,6 +3107,7 @@ for arg in "$@"; do
     "--docker")            set -- "$@" "-k" ;;
     "--gen-dockerfile")    set -- "$@" "-K" ;;
     "--print-container")   set -- "$@" "-c" ;;
+    "--cuda")              set -- "$@" "-C" ;;
     "--yes")               set -- "$@" "-y" ;;
     "--YES")               set -- "$@" "-Y" ;;
     "--status")            set -- "$@" "-s" ;;
@@ -3130,7 +3131,7 @@ for arg in "$@"; do
 done
 
 # Parse command-line options
-while getopts ":adDrRpPginkKcyYsefmqvVShu:t:o" opt; do
+while getopts ":adDrRpPginkKcCyYsefmqvVShu:t:o" opt; do
   case $opt in
     a )
       ARG_all=true
@@ -3202,6 +3203,9 @@ while getopts ":adDrRpPginkKcyYsefmqvVShu:t:o" opt; do
     c )
       ARG_print_container=true
       ;;
+    C )
+      ARG_cuda=true
+      ;;
     y )
       ARG_yes=true
       ;;
@@ -3261,6 +3265,7 @@ while getopts ":adDrRpPginkKcyYsefmqvVShu:t:o" opt; do
       echo "     --gen-pipfile      generate Pipfile from YAML"
       echo "     --gen-requirements generate Python requirements from YAML"
       echo "     --print-container  print container name/tag and exit"
+      echo "     --cuda             CUDA Version use to be installed"
       echo "     --status           check install status of components"
       echo "     --yes              answer yes to most installation questions (--YES for all)"
       echo "     --quiet            display less output"
@@ -3466,6 +3471,10 @@ fi
 if $ARG_print_container; then
   echo "$VAR_target_container" "$VAR_target_container_tag"
   exit 0
+fi
+
+if $ARG_cuda; then
+  VAR_target_cuda=$#
 fi
 
 # User requested activation of the environment
