@@ -3475,7 +3475,7 @@ if $ARG_print_container; then
 fi
 
 if $ARG_cuda; then
-  $VAR_target_cuda
+  print_envs_to_source "VAR_target_cuda"
 fi
 
 # User requested activation of the environment
