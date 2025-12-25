@@ -615,6 +615,33 @@ is_kubuntu_2404() {
   fi
 }
 
+is_ubuntu_2204() {
+  if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] && [[ $(lsb_release -rs 2>/dev/null) == "22.04" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
+is_kubuntu_2204() {
+  if [[ $(lsb_release -is 2>/dev/null) == "Kubuntu" ]] && [[ $(lsb_release -rs 2>/dev/null) == "22.04" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
+is_debian_13() {
+  if [[ $(lsb_release -is 2>/dev/null) == "Debian" ]] && [[ $(lsb_release -rs 2>/dev/null) == "13" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
 is_amd64() {
   if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]];
   then
@@ -680,7 +707,7 @@ check_installer_requirements_met() {
     usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
-  if is_nvidia_graphics; then
+  if is_kubuntu_2204 && is_nvidia_graphics || is_ubuntu_2204 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
     sudo dpkg -i cuda-keyring_1.1-1_all.deb
@@ -693,6 +720,34 @@ check_installer_requirements_met() {
     apt-get -y install cuda-toolkit-13-1
     fi
   fi
+  if is_kubuntu_2404 && is_nvidia_graphics || is_ubuntu_2404 && is_nvidia_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    sudo apt-get update
+    sudo apt-get -y install cuda-toolkit-13-1
+    else
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+    apt-get update
+    apt-get -y install cuda-toolkit-13-1
+    fi
+  fi
+  if is_debian_13 && is_nvidia_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    sudo apt-get update
+    sudo apt-get -y install cuda-toolkit-13-1
+    else
+    wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+    apt-get update
+    apt-get -y install cuda-toolkit-13-1
+    fi
+  fi
+
+
   if is_intel_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
     # placeholder
