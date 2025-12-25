@@ -643,8 +643,26 @@ is_debian_13() {
   fi
 }
 
+is_intel64() {
+  if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "GenuineIntel" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
 is_amd64() {
   if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
+is_arm64() {
+  if [[ $(uname -m 2>/dev/null) == "arm64" ]];
   then
     true
   else
