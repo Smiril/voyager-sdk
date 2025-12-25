@@ -728,7 +728,7 @@ check_installer_requirements_met() {
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-      dpkg -i cuda-keyring_1.1-1_all.deb
+      dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
       rm -f ./cuda-keyring_1.1-1_all.deb
@@ -743,7 +743,7 @@ check_installer_requirements_met() {
   if is_kubuntu_2404 && is_nvidia_graphics || is_ubuntu_2404 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y install cuda-toolkit-13-1
       rm -f ./cuda-keyring_1.1-1_all.deb
@@ -755,7 +755,7 @@ check_installer_requirements_met() {
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-      dpkg -i cuda-keyring_1.1-1_all.deb
+      dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
       rm -f ./cuda-keyring_1.1-1_all.deb
@@ -770,7 +770,7 @@ check_installer_requirements_met() {
   if is_debian_13 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
-      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y install cuda-toolkit-13-1
       rm -f ./cuda-keyring_1.1-1_all.deb
@@ -782,7 +782,7 @@ check_installer_requirements_met() {
       fi
     else
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
-      dpkg -i cuda-keyring_1.1-1_all.deb
+      dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
       rm -f ./cuda-keyring_1.1-1_all.deb
