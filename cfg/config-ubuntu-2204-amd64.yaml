@@ -246,9 +246,11 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
+    - rocm
+    - "linux-headers-$(uname -r)"
+    - amdgpu-dkms
     - rocminfo
     - va-info
-    - rocm
     - gstreamer1.0-tools
     - gstreamer1.0-libav
     - gstreamer1.0-vaapi
