@@ -606,6 +606,15 @@ is_ubuntu_2404() {
   fi
 }
 
+is_amd64() {
+if [[ $(lscpu | awk '/Vendor ID:/{print $2}' -is 2>/dev/null) == "AuthenticAMD" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+  
 check_installer_requirements_met() {
   local ok=true
   # use system pip at this stage as not in virtual env here
@@ -618,6 +627,16 @@ check_installer_requirements_met() {
   # needed for system pip at this stage
   if is_ubuntu_2404; then
     pip_install="$pip_install --break-system-packages"
+  fi
+  if is_amd64; then
+  wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
+  sudo apt install ./amdgpu-install_7.1.1.70101-1_all.deb
+  sudo apt update
+  sudo apt install python3-setuptools python3-wheel
+  sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+  sudo apt install rocm
+  sudo apt install "linux-headers-$(uname -r)"
+  sudo apt install amdgpu-dkms  
   fi
   declare -a installs
   local apt_update="sudo apt update"
