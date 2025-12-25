@@ -5,7 +5,7 @@ name: "Axelera AI - LLM SDK"
 os:
   name: Debian
   version: 13
-  cpu: AuthenticINTEL
+  cpu: GeniuneIntel
 
 vars:
   AX_DEBIAN_URL: https://software.axelera.ai/artifactory/axelera-apt-source/
