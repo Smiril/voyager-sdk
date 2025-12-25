@@ -2183,6 +2183,12 @@ ensure_and_validate_user_token() {
     (Please refer to docs/tutorials/install.md for more information.)
     Email address:" ARG_user
   fi
+  if [ -z "$ARG_target_cuda" ]; then
+    read -p "
+    Email address not provided through --user <user>.
+    (Please refer to docs/tutorials/install.md for more information.)
+    Email address:" ARG_target_cuda
+  fi
   if [ -z "$ARG_token" ]; then
     read -p "
     Token not provided through --token <token>.
@@ -3266,7 +3272,7 @@ while getopts ":adDrRpPginkKcCyYsefmqvVShu:t:o" opt; do
       echo "     --gen-pipfile      generate Pipfile from YAML"
       echo "     --gen-requirements generate Python requirements from YAML"
       echo "     --print-container  print container name/tag and exit"
-      echo "     --cuda             CUDA Version use to be installed"
+      echo "     --cuda <arch>      CUDA Version use to be installed"
       echo "     --status           check install status of components"
       echo "     --yes              answer yes to most installation questions (--YES for all)"
       echo "     --quiet            display less output"
