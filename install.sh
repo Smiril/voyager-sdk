@@ -714,99 +714,99 @@ check_installer_requirements_met() {
   fi
   if is_amd64 || is_amd_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-    sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
-    sudo apt-get update
-    sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
+      sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+      sudo apt-get update
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     else
-    wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-    apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
-    apt-get update
-    usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
+      apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+      apt-get update
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
   if is_kubuntu_2204 && is_nvidia_graphics || is_ubuntu_2204 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-    sudo dpkg -i cuda-keyring_1.1-1_all.deb
-    sudo apt-get update
-    sudo apt-get -y install cuda-toolkit-13-1
-    sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-13-1
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     else
-    sudo apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
-    else
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-    dpkg -i cuda-keyring_1.1-1_all.deb
-    apt-get update
-    apt-get -y install cuda-toolkit-13-1
-    usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
-    else
-    apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+      dpkg -i cuda-keyring_1.1-1_all.deb
+      apt-get update
+      apt-get -y install cuda-toolkit-13-1
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     fi
   fi
   if is_kubuntu_2404 && is_nvidia_graphics || is_ubuntu_2404 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-    sudo dpkg -i cuda-keyring_1.1-1_all.deb
-    sudo apt-get update
-    sudo apt-get -y install cuda-toolkit-13-1
-    sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-13-1
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     else
-    sudo apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
-    else
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-    dpkg -i cuda-keyring_1.1-1_all.deb
-    apt-get update
-    apt-get -y install cuda-toolkit-13-1
-    usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
-    else
-    apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+      dpkg -i cuda-keyring_1.1-1_all.deb
+      apt-get update
+      apt-get -y install cuda-toolkit-13-1
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     fi
   fi
   if is_debian_13 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
-    sudo dpkg -i cuda-keyring_1.1-1_all.deb
-    sudo apt-get update
-    sudo apt-get -y install cuda-toolkit-13-1
-    sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-13-1
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        sudo apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     else
-    sudo apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
-    else
-    wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
-    dpkg -i cuda-keyring_1.1-1_all.deb
-    apt-get update
-    apt-get -y install cuda-toolkit-13-1
-    usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-    if has_cuda; then
-    echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
-    else
-    apt-get remove --purge cuda-toolkit-13-1 -y
-    fi
+      wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+      dpkg -i cuda-keyring_1.1-1_all.deb
+      apt-get update
+      apt-get -y install cuda-toolkit-13-1
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        apt-get remove --purge cuda-toolkit-13-1 -y
+      fi
     fi
   fi
   if is_debian_13 && is_intel_graphics || is_kubuntu_2404 && is_intel_graphics || is_ubuntu_2404 && is_intel_graphics || is_kubuntu_2204 && is_intel_graphics || is_ubuntu_2204 && is_intel_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    sudo apt-get update
-    sudo apt-get install -y xserver-xorg-video-intel libmfx1
+      sudo apt-get update
+      sudo apt-get install -y xserver-xorg-video-intel libmfx1
     else
-    apt-get update
-    apt-get install -y xserver-xorg-video-intel libmfx1
+      apt-get update
+      apt-get install -y xserver-xorg-video-intel libmfx1
     fi
   fi
   declare -a installs
