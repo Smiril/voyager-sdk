@@ -156,7 +156,7 @@ def check_cpu():
 	ok = "lscpu | awk '/Vendor ID:/{print $2}'"
 	if ok == "AuthenticAMD":
 		ok = "lscpu | awk '/Vendor ID:/{print $2}'"
-	elif ok == "AuthenticINTEL":
+	elif ok == "GeniuneIntel":
 		ok = "lscpu | awk '/Vendor ID:/{print $2}'"
 	else:
 		ok = "lscpu | awk '/Vendor ID:/{print $2}'"
