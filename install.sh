@@ -670,21 +670,27 @@ check_installer_requirements_met() {
   if is_amd64 || is_amd_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
     wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-    sudo apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
-    sudo apt update -y
+    sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+    sudo apt-get update
     sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     else
     wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-    apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
-    apt update -y
+    apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+    apt-get update
     usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
   if is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-    # placeholder
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    sudo apt-get update
+    sudo apt-get -y install cuda-toolkit-13-1
     else
-    # placeholder
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+    apt-get update
+    apt-get -y install cuda-toolkit-13-1
     fi
   fi
   if is_intel_graphics; then
