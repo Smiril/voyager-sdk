@@ -733,7 +733,7 @@ check_installer_requirements_met() {
   if is_ubuntu_2204 || is_kubuntu_2204 || is_debian_13 || is_ubuntu_2404 || is_kubuntu_2404; then
     pip_install="$pip_install --break-system-packages"
   fi
-  if is_x86_64 && is_amd64 || is_amd_graphics; then
+  if is_x86_64 && is_amd64 || is_x86_64 && is_amd_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
