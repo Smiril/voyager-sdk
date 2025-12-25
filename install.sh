@@ -697,19 +697,7 @@ check_installer_requirements_met() {
     pip_install="$pip_install --user"
   fi
   # needed for system pip at this stage
-  if is_ubuntu_2204; then
-    pip_install="$pip_install --break-system-packages"
-  fi
-  if is_kubuntu_2204; then
-    pip_install="$pip_install --break-system-packages"
-  fi
-  if is_debian_13; then
-    pip_install="$pip_install --break-system-packages"
-  fi
-  if is_ubuntu_2404; then
-    pip_install="$pip_install --break-system-packages"
-  fi
-  if is_kubuntu_2404; then
+  if is_ubuntu_2204 || is_kubuntu_2204 || is_debian_13 || is_ubuntu_2404 || is_kubuntu_2404; then
     pip_install="$pip_install --break-system-packages"
   fi
   if is_amd64 || is_amd_graphics; then
