@@ -616,7 +616,7 @@ is_kubuntu_2404() {
 }
 
 is_amd64() {
-if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]];
+  if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]];
   then
     true
   else
