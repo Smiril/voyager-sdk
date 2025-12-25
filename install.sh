@@ -865,7 +865,7 @@ check_installer_requirements_met() {
   fi
   if is_arm64 && is_debian_13 && is_nvidia_graphics || is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
-      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y $ARG_cuda
@@ -877,7 +877,7 @@ check_installer_requirements_met() {
         sudo apt-get -y remove --purge $ARG_cuda
       fi
     else
-      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
       dpkg -i ./cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install $ARG_cuda
