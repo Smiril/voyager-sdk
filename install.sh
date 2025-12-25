@@ -836,6 +836,60 @@ check_installer_requirements_met() {
       apt-get install -y xserver-xorg-video-intel libmfx1
     fi
   fi
+  if is_arm64 && is_kubuntu_2204 && is_nvidia_graphics || is_arm64 && is_ubuntu_2204 && is_nvidia_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
+      sudo apt-get update
+      sudo apt-get -y install $ARG_cuda
+      rm -f ./cuda-keyring_1.1-1_all.deb
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        sudo apt-get -y remove --purge $ARG_cuda
+      fi
+    else
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      dpkg -i ./cuda-keyring_1.1-1_all.deb
+      apt-get update
+      apt-get -y install $ARG_cuda
+      rm -f ./cuda-keyring_1.1-1_all.deb
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        apt-get -y remove --purge $ARG_cuda
+      fi
+    fi
+  fi
+  if is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
+      sudo apt-get update
+      sudo apt-get -y $ARG_cuda
+      rm -f ./cuda-keyring_1.1-1_all.deb
+      sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        sudo apt-get -y remove --purge $ARG_cuda
+      fi
+    else
+      wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
+      dpkg -i ./cuda-keyring_1.1-1_all.deb
+      apt-get update
+      apt-get -y install $ARG_cuda
+      rm -f ./cuda-keyring_1.1-1_all.deb
+      usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+      if has_cuda; then
+        echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
+      else
+        apt-get -y remove --purge $ARG_cuda
+      fi
+    fi
+  fi
   declare -a installs
   local apt_update="sudo apt update"
   if is_set "$VAR_installer_apt_deps"; then
