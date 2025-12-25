@@ -23,7 +23,7 @@
 - Git installed
 - Internet connection for downloading dependencies
 - Administrative/sudo privileges
-- USB 3.0 port or PCIe slot for Metis hardware
+- M.2 slot or PCIe slot for Metis hardware
 
 ## Level
 **Beginner** - Follow step-by-step installation instructions
