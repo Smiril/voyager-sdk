@@ -665,7 +665,7 @@ is_nvidia_graphics() {
   if [[ $(lscpu | awk '/Device:/{print $2}' 2>/dev/null) == "NVIDIA" ]];
   then
     if [[ ! $ARG_cuda ]]; then
-      echo "NO CUDA VERION GIVEN"
+      echo "NO CUDA VERSION GIVEN try --cuda cuda-toolkit-12-8"
       exit 1
     else
         true
