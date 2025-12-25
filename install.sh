@@ -716,9 +716,10 @@ check_installer_requirements_met() {
   if is_kubuntu_2204 && is_nvidia_graphics || is_ubuntu_2204 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-      sudo dpkg -i cuda-keyring_1.1-1_all.deb
+      sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
@@ -730,6 +731,7 @@ check_installer_requirements_met() {
       dpkg -i cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
@@ -744,6 +746,7 @@ check_installer_requirements_met() {
       sudo dpkg -i cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
@@ -755,6 +758,7 @@ check_installer_requirements_met() {
       dpkg -i cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
@@ -769,6 +773,7 @@ check_installer_requirements_met() {
       sudo dpkg -i cuda-keyring_1.1-1_all.deb
       sudo apt-get update
       sudo apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
@@ -780,6 +785,7 @@ check_installer_requirements_met() {
       dpkg -i cuda-keyring_1.1-1_all.deb
       apt-get update
       apt-get -y install cuda-toolkit-13-1
+      rm -f ./cuda-keyring_1.1-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
       if has_cuda; then
         echo "Number of CUDA Cores: $(nvidia-settings -q CUDACores -t)"
