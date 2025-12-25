@@ -629,14 +629,25 @@ check_installer_requirements_met() {
     pip_install="$pip_install --break-system-packages"
   fi
   if is_amd64; then
-  wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
-  sudo apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
-  sudo apt update -y
-  sudo apt install -y python3-setuptools python3-wheel
-  sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
-  sudo apt install -y rocm
-  sudo apt install -y "linux-headers-$(uname -r)"
-  sudo apt install -y amdgpu-dkms  
+    if [[ $(id -u) -ne 0 ]]; then
+    wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
+    sudo apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+    sudo apt update -y
+    sudo apt install -y python3-setuptools python3-wheel
+    sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+    sudo apt install -y rocm
+    sudo apt install -y "linux-headers-$(uname -r)"
+    sudo apt install -y amdgpu-dkms  
+    else
+    wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
+    apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
+    apt update -y
+    apt install -y python3-setuptools python3-wheel
+    usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+    apt install -y rocm
+    apt install -y "linux-headers-$(uname -r)"
+    apt install -y amdgpu-dkms
+    fi
   fi
   declare -a installs
   local apt_update="sudo apt update"
