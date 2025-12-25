@@ -863,7 +863,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics; then
+  if is_arm64 && is_debian_13 && is_nvidia_graphics || is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
