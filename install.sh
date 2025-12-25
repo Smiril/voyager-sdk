@@ -651,7 +651,7 @@ is_amd64() {
   fi
 }
 
-is_amd_grafics() {
+is_amd_graphics() {
   if [[ $(lscpu | awk '/Device:/{print $2}' 2>/dev/null) == "AMD" ]];
   then
     true
@@ -660,7 +660,7 @@ is_amd_grafics() {
   fi
 }
 
-is_nvidia_grafics() {
+is_nvidia_graphics() {
   if [[ $(lscpu | awk '/Device:/{print $2}' 2>/dev/null) == "NVIDIA" ]];
   then
     true
@@ -669,7 +669,7 @@ is_nvidia_grafics() {
   fi
 }
 
-is_intel_grafics() {
+is_intel_graphics() {
   if [[ $(glxinfo | awk '/Device:/{print $2}' 2>/dev/null) == "Intel" ]];
   then
     true
