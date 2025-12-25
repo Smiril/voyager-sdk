@@ -5,7 +5,7 @@ name: "Axelera AI - Voyager SDK"
 os:
   name: Debian
   version: 13
-  cpu: GeniuneIntel
+  cpu: arm64
 
 vars:
   AX_RELEASE_URL: https://media.axelera.ai
