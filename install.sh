@@ -606,6 +606,15 @@ is_ubuntu_2404() {
   fi
 }
 
+is_kubuntu_2404() {
+  if [[ $(lsb_release -is 2>/dev/null) == "Kubuntu" ]] && [[ $(lsb_release -rs 2>/dev/null) == "24.04" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
 is_amd64() {
 if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]];
   then
@@ -626,6 +635,9 @@ check_installer_requirements_met() {
   fi
   # needed for system pip at this stage
   if is_ubuntu_2404; then
+    pip_install="$pip_install --break-system-packages"
+  fi
+  if is_kubuntu_2404; then
     pip_install="$pip_install --break-system-packages"
   fi
   if is_amd64; then
