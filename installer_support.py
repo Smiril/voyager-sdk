@@ -159,7 +159,7 @@ def check_cpu():
 	elif ok == "GeniuneIntel":
 		ok = "lscpu | awk '/Vendor ID:/{print $2}'"
 	else:
-		ok = "lscpu | awk '/Vendor ID:/{print $2}'"
+		ok = "uname -m"
 	return ok
 	
 
