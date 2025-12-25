@@ -650,6 +650,7 @@ is_intel_grafics() {
     false
   fi
 }
+
 check_installer_requirements_met() {
   local ok=true
   # use system pip at this stage as not in virtual env here
