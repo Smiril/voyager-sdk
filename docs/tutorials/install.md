@@ -16,7 +16,7 @@
   - [Further support](#further-support)
 
 ## Prerequisites
-- Ubuntu 22.04+ or Windows with WSL2 installed
+- Ubuntu 22.04+ , Kubuntu 22.04+ , Debian 13 or Windows with WSL2 installed
 - Python 3.10 or later
 - Git installed
 - Internet connection for downloading dependencies
@@ -82,7 +82,7 @@ You must run the installer each time you checkout a new SDK release.
 The following command installs everything you need to deploy and run models on Metis hardware:
 
 ```bash
-./install.sh --all --media
+./install.sh --all --media --YES
 ```
 
 The installer inspects the system and ensures the Metis PCIe driver, system runtime
@@ -94,7 +94,9 @@ for example [`cfg/config-ubuntu-2204-amd64.yaml`](/cfg/config-ubuntu-2204-amd64.
 The `--media` option downloads a collection of sample videos which you can use to evaluate
 different models visually.
 
-The PCIe driver is installed to the system location `/lib/modules`. It contains minimal
+The `--cuda cuda-toolkit-12-8` option download requested cuda-toolkit version for your NVIDIA CUDA enabled GraphicsCard.
+
+PCIe driver is installe`/lib/modules`. It contains minimal
 functionality that does not generally change between releases.
 
 Most runtime functionality is provided in libraries installed to
