@@ -623,7 +623,33 @@ is_amd64() {
     false
   fi
 }
-  
+
+is_amd_grafics() {
+  if [[ $(lscpu | awk '/Device:/{print $2}' 2>/dev/null) == "AMD" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
+is_nvidia_grafics() {
+  if [[ $(lscpu | awk '/Device:/{print $2}' 2>/dev/null) == "NVIDIA" ]];
+  then
+    true
+  else
+    false
+  fi
+}
+
+is_intel_grafics() {
+  if [[ $(glxinfo | awk '/Device:/{print $2}' 2>/dev/null) == "Intel" ]];
+  then
+    true
+  else
+    false
+  fi
+}
 check_installer_requirements_met() {
   local ok=true
   # use system pip at this stage as not in virtual env here
