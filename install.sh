@@ -3211,7 +3211,7 @@ while getopts ":adDrRpPginkKcCyYsefmqvVShu:t:o" opt; do
       ARG_print_container=true
       ;;
     C )
-      ARG_cuda=true
+      ARG_cuda="$OPTARG"
       ;;
     y )
       ARG_yes=true
