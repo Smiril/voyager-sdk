@@ -746,9 +746,21 @@ check_installer_requirements_met() {
     apt-get -y install cuda-toolkit-13-1
     fi
   fi
-
-
-  if is_intel_graphics; then
+  if is_kubuntu_2204 && is_intel_graphics || is_ubuntu_2204 && is_intel_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    # placeholder
+    else
+    # placeholder
+    fi
+  fi
+  if is_kubuntu_2404 && is_intel_graphics || is_ubuntu_2404 && is_intel_graphics; then
+    if [[ $(id -u) -ne 0 ]]; then
+    # placeholder
+    else
+    # placeholder
+    fi
+  fi
+  if is_debian_13 && is_intel_graphics; then
     if [[ $(id -u) -ne 0 ]]; then
     # placeholder
     else
