@@ -247,6 +247,8 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
+    - linux-headers-6.12.57-*rt-amd64
+    - linux-image-6.12.57-*rt-amd64
     - vainfo
     - intel-media-va-driver-non-free
     - gstreamer1.0-vaapi
