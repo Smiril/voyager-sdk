@@ -738,11 +738,13 @@ check_installer_requirements_met() {
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get update
+      rm -f ./amdgpu-install_7.1.1.70101-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     else
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
       apt-get update
+      rm -f ./amdgpu-install_7.1.1.70101-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
@@ -844,11 +846,13 @@ check_installer_requirements_met() {
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get update
+      rm -f ./amdgpu-install_7.1.1.70101-1_all.deb
       sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     else
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
       apt-get update
+      rm -f ./amdgpu-install_7.1.1.70101-1_all.deb
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
