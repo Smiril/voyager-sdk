@@ -246,8 +246,8 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
-    - "linux-headers-*"
-    - "linux-image-*"
+    - "linux-headers-* | grep -v cloud"
+    - "linux-image-* | grep -v cloud"
     - rocm
     - amdgpu-dkms
     - rocminfo
