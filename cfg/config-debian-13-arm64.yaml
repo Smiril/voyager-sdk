@@ -177,6 +177,8 @@ penv:
     - xz-utils
     - zlib1g-dev
     # platform specific
+    - "linux-headers-*"
+    - "linux-image-*"
     - opencl-headers
     - ocl-icd-opencl-dev
 
