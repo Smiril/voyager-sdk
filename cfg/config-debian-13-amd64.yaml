@@ -225,11 +225,11 @@ runtime:
     - gstreamer1.0-tools
     - gstreamer1.0-x
     - libasio-dev
-    - libboost-filesystem1.88
-    - libboost-log1.88
-    - libboost-program-options1.88
-    - libboost-regex1.88
-    - libboost-thread1.88
+    - libboost-filesystem1.88.0
+    - libboost-log1.88.0
+    - libboost-program-options1.88.0
+    - libboost-regex1.88.0
+    - libboost-thread1.88.0
     - libeigen3-dev
     - libgstreamer-plugins-good*-dev
     - libgstreamer-plugins-bad*-dev
