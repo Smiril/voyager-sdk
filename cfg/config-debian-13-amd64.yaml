@@ -246,8 +246,9 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
+    - "linux-headers-*"
+    - "linux-image-*"
     - rocm
-    - "linux-headers-$(uname -r)"
     - amdgpu-dkms
     - rocminfo
     - va-info
