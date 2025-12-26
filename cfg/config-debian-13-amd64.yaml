@@ -246,8 +246,8 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
-    - "linux-headers-6.12.57"
-    - "linux-image-6.12.57"
+    - linux-headers-6.12.57*deb13-amd64
+    - linux-image-6.12.57*deb13-amd64
     - rocm
     - amdgpu-dkms
     - rocminfo
