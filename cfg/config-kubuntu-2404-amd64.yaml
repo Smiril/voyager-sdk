@@ -247,7 +247,8 @@ runtime:
     - unzip
     # platform specific
     - rocm
-    - "linux-headers-$(uname -r)"
+    - linux-headers-6.12.57-*rt-amd64
+    - linux-image-6.12.57-*rt-amd64
     - amdgpu-dkms
     - rocminfo
     - va-info
