@@ -730,7 +730,7 @@ check_installer_requirements_met() {
     pip_install="$pip_install --user"
   fi
   # needed for system pip at this stage
-  if is_ubuntu_2204 || is_kubuntu_2204 || is_debian_13 || is_ubuntu_2404 || is_kubuntu_2404; then
+  if [[ is_ubuntu_2204 || is_kubuntu_2204 || is_debian_13 || is_ubuntu_2404 || is_kubuntu_2404 ]]; then
     pip_install="$pip_install --break-system-packages"
   fi
   if is_x86_64 && is_amd64 || is_x86_64 && is_amd_graphics; then
@@ -746,7 +746,7 @@ check_installer_requirements_met() {
       usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
     fi
   fi
-  if is_x86_64 && is_kubuntu_2204 && is_nvidia_graphics || is_x86_64 && is_ubuntu_2204 && is_nvidia_graphics; then
+  if [[ is_x86_64 && is_kubuntu_2204 && is_nvidia_graphics || is_x86_64 && is_ubuntu_2204 && is_nvidia_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
@@ -773,7 +773,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_x86_64 && is_kubuntu_2404 && is_nvidia_graphics || is_x86_64 && is_ubuntu_2404 && is_nvidia_graphics; then
+  if [[ is_x86_64 && is_kubuntu_2404 && is_nvidia_graphics || is_x86_64 && is_ubuntu_2404 && is_nvidia_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
@@ -800,7 +800,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_x86_64 && is_debian_13 && is_nvidia_graphics; then
+  if [[ is_x86_64 && is_debian_13 && is_nvidia_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
@@ -827,7 +827,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_x86_64 && is_debian_13 && is_intel_graphics || is_x86_64 && is_kubuntu_2404 && is_intel_graphics || is_x86_64 && is_ubuntu_2404 && is_intel_graphics || is_x86_64 && is_kubuntu_2204 && is_intel_graphics || is_x86_64 && is_ubuntu_2204 && is_intel_graphics; then
+  if [[ is_x86_64 && is_debian_13 && is_intel_graphics || is_x86_64 && is_kubuntu_2404 && is_intel_graphics || is_x86_64 && is_ubuntu_2404 && is_intel_graphics || is_x86_64 && is_kubuntu_2204 && is_intel_graphics || is_x86_64 && is_ubuntu_2204 && is_intel_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       sudo apt-get update
       sudo apt-get install -y xserver-xorg-video-intel libmfx1
@@ -839,7 +839,7 @@ check_installer_requirements_met() {
   #
   # placeholder for arm64 graphics card driver
   #
-  if is_arm64 && is_amd_graphics; then
+  if [[ is_arm64 && is_amd_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
       sudo apt-get install -y ./amdgpu-install_7.1.1.70101-1_all.deb
@@ -855,7 +855,7 @@ check_installer_requirements_met() {
   #
   # not yet ready
   #
-  if is_arm64 && is_kubuntu_2204 && is_nvidia_graphics || is_arm64 && is_ubuntu_2204 && is_nvidia_graphics; then
+  if [[ is_arm64 && is_kubuntu_2204 && is_nvidia_graphics || is_arm64 && is_ubuntu_2204 && is_nvidia_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
@@ -882,7 +882,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_arm64 && is_debian_13 && is_nvidia_graphics || is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics; then
+  if [[ is_arm64 && is_debian_13 && is_nvidia_graphics || is_arm64 && is_kubuntu_2404 && is_nvidia_graphics || is_arm64 && is_ubuntu_2404 && is_nvidia_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
       sudo dpkg -i ./cuda-keyring_1.1-1_all.deb
@@ -909,7 +909,7 @@ check_installer_requirements_met() {
       fi
     fi
   fi
-  if is_arm64 && is_debian_13 && is_intel_graphics || is_arm64 && is_kubuntu_2404 && is_intel_graphics || is_arm64 && is_ubuntu_2404 && is_intel_graphics || is_arm64 && is_kubuntu_2204 && is_intel_graphics || is_arm64 && is_ubuntu_2204 && is_intel_graphics; then
+  if [[ is_arm64 && is_debian_13 && is_intel_graphics || is_arm64 && is_kubuntu_2404 && is_intel_graphics || is_arm64 && is_ubuntu_2404 && is_intel_graphics || is_arm64 && is_kubuntu_2204 && is_intel_graphics || is_arm64 && is_ubuntu_2204 && is_intel_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       sudo apt-get update
       sudo apt-get install -y xserver-xorg-video-intel libmfx1
