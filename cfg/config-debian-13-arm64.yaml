@@ -251,6 +251,8 @@ runtime:
     - qt6-base-dev
     - unzip
     # platform specific
+    - linux-headers-6.12.57+deb13-rt-amd64
+    - linux-image-6.12.57+deb13-rt-amd64
   optionals:
     - name: libmali-valhall-g610-g13p0-x11-gbm
       info: |-
