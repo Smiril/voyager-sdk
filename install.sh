@@ -659,6 +659,9 @@ check_installer_requirements_met() {
     pip_install="$pip_install --user"
   fi
   # needed for system pip at this stage
+  if [[ is_ubuntu_2204 ]] || [[ is_kubuntu_2204 ]] || [[ is_debian_13 ]] || [[ is_ubuntu_2404 ]] || [[ is_kubuntu_2404 ]]; then
+    pip_install="$pip_install --break-system-packages"
+  fi
   declare -a installs
   local apt_update="sudo apt update"
   if is_set "$VAR_installer_apt_deps"; then
