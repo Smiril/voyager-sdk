@@ -198,11 +198,11 @@ determine_system_and_cfg_file() {
   SYS_OS_version=${SYS_OS_version//_/-}
   SYS_OS_version=${SYS_OS_version//./}
   SYS_arch=$(dpkg --print-architecture 2>/dev/null)
-  if [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml" ]] && [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "AuthenticAMD" ]]; then
+  if [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml" ]] || [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "AuthenticAMD" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml"}
-  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml" ]] && [[ $(uname -m  2>/dev/null) == "arm64" ]]; then
+  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml" ]] || [[ $(uname -m  2>/dev/null) == "arm64" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml"}
-  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml" ]] && [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "GenuineIntel" ]]; then
+  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml" ]] || [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "GenuineIntel" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml"}
   fi
 }
