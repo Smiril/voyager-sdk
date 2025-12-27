@@ -240,22 +240,18 @@ runtime:
     - meson
     - nlohmann-json3-dev
     - rocm-opencl-icd
-    - rocm-llvm
-    - rocm-llvm-dev
+    - rocm
     - python3-gi
     - qt6-base-dev
     - unzip
     # platform specific
     - linux-headers-6.12.57+deb13-rt-amd64
     - linux-image-6.12.57+deb13-rt-amd64
-    - rocm
     - amdgpu-dkms
-    - rocminfo
     - va-info
     - gstreamer1.0-tools
     - gstreamer1.0-libav
     - gstreamer1.0-vaapi
-    - rocm-opencl
 
   envs:
     - name: AXELERA_RUNTIME_DIR
