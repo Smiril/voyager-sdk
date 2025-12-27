@@ -2309,12 +2309,6 @@ ensure_and_validate_user_token() {
     (Please refer to docs/tutorials/install.md for more information.)
     Email address:" ARG_user
   fi
-  if [ -z "$ARG_cuda" ]; then
-    read -p "
-    cuda-toolkit not provided through --cuda <cuda-toolkit-12-8>.
-    (Please refer to docs/tutorials/install.md for more information.)
-    Toolkit:" ARG_cuda
-  fi
   if [ -z "$ARG_token" ]; then
     read -p "
     Token not provided through --token <token>.
@@ -3604,6 +3598,10 @@ fi
 if $ARG_print_container; then
   echo "$VAR_target_container" "$VAR_target_container_tag"
   exit 0
+fi
+
+if $ARG_cuda; then
+  echo "$ARG_cuda"="$OPTARG"
 fi
 
 # User requested activation of the environment
