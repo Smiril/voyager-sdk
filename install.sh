@@ -3119,7 +3119,6 @@ while getopts ":adDrRpPginkKcyYsefmqvVShu:t:o" opt; do
       echo "     --gen-pipfile      generate Pipfile from YAML"
       echo "     --gen-requirements generate Python requirements from YAML"
       echo "     --print-container  print container name/tag and exit"
-      echo "  -C --cuda <arch>      CUDA Version use to be installed"
       echo "     --status           check install status of components"
       echo "     --yes              answer yes to most installation questions (--YES for all)"
       echo "     --quiet            display less output"
