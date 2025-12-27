@@ -206,7 +206,7 @@ determine_system_and_cfg_file() {
   elif [[ $(uname -m 2>/dev/null) == "arm64" ]]; then
     SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-arm64.yaml"}
   else
-    ok = False
+   exit 1
   fi 
 }
 
