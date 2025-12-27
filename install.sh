@@ -200,11 +200,11 @@ determine_system_and_cfg_file() {
   SYS_OS_version=${SYS_OS_version//./}
   
   if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "GenuineIntel" ]]; then
-    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-intel64.yaml"}
+    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-${SYS_OS_version}-intel64.yaml"}
   elif [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]]; then
-    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-amd64.yaml"}
+    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-${SYS_OS_version}-amd64.yaml"}
   elif [[ $(uname -m 2>/dev/null) == "arm64" ]]; then
-    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-arm64.yaml"}
+    SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-${SYS_OS_version}-arm64.yaml"}
   else
    exit 1
   fi 
