@@ -832,10 +832,10 @@ check_installer_requirements_met() {
   if [[ is_x86_64 ]] && [[ is_debian_13 ]] && [[ is_intel_graphics ]] || [[ is_x86_64 ]] && [[ is_kubuntu_2404 ]] && [[ is_intel_graphics ]] || [[ is_x86_64 ]] && [[ is_ubuntu_2404 ]] && [[ is_intel_graphics ]] || [[ is_x86_64 ]] && [[ is_kubuntu_2204 ]] && [[ is_intel_graphics ]] || [[ is_x86_64 ]] && [[ is_ubuntu_2204 ]] && [[ is_intel_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       sudo apt-get update
-      sudo apt-get install -y xserver-xorg-video-intel libmfx1
+      sudo apt-get install -y xserver-xorg-video-intel
     else
       apt-get update
-      apt-get install -y xserver-xorg-video-intel libmfx1
+      apt-get install -y xserver-xorg-video-intel
     fi
   fi
   #
@@ -916,10 +916,10 @@ check_installer_requirements_met() {
   if [[ is_arm64 ]] && [[ is_debian_13 ]] && [[ is_intel_graphics ]] || [[ is_arm64 ]] && [[ is_kubuntu_2404 ]] && [[ is_intel_graphics ]] || [[ is_arm64 ]] && [[ is_ubuntu_2404 ]] && [[ is_intel_graphics ]] || [[ is_arm64 ]] && [[ is_kubuntu_2204 ]] && [[ is_intel_graphics ]] || [[ is_arm64 ]] && [[ is_ubuntu_2204 ]] && [[ is_intel_graphics ]]; then
     if [[ $(id -u) -ne 0 ]]; then
       sudo apt-get update
-      sudo apt-get install -y xserver-xorg-video-intel libmfx1
+      sudo apt-get install -y xserver-xorg-video-intel
     else
       apt-get update
-      apt-get install -y xserver-xorg-video-intel libmfx1
+      apt-get install -y xserver-xorg-video-intel
     fi
   fi
   declare -a installs
