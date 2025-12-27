@@ -198,13 +198,13 @@ determine_system_and_cfg_file() {
   SYS_OS_version=$(lsb_release -rs 2>/dev/null)
   SYS_OS_version=${SYS_OS_version//_/-}
   SYS_OS_version=${SYS_OS_version//./}
-  SYS_arch="amd64"
-  if [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml" ]]; then
-  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml"}
-  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml" ]]; then
+  SYS_arch=$(dpkg --print-architecture 2>/dev/null)
+  if [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml" ]] && [[ $(dpkg --print-architecture 2>/dev/null) == "amd64" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml"}
-  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml" ]]; then
+  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml" ]] && [[ $(dpkg --print-architecture 2>/dev/null) == "arm64" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml"}
+  else
+  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml"}
   fi
 }
 
