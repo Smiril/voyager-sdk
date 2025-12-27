@@ -20,8 +20,6 @@ vars:
 installer_dependencies:
   - git
   - kmod
-  - rocm-llvm
-  - rocm-llvm-dev
   - make
   - wget
 
@@ -241,7 +239,9 @@ runtime:
     - libzmq3-dev
     - meson
     - nlohmann-json3-dev
-    - rocm-opencl-dev
+    - rocm-opencl-icd
+    - rocm-llvm
+    - rocm-llvm-dev
     - python3-gi
     - qt6-base-dev
     - unzip
