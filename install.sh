@@ -66,7 +66,6 @@ ARG_docker_system=false
 ARG_no_docker_system=false
 ARG_gen_dockerfile=false
 ARG_print_container=false
-ARG_cuda=
 ARG_yes=false
 ARG_YES=false
 ARG_status=false
@@ -2966,7 +2965,6 @@ for arg in "$@"; do
     "--docker")            set -- "$@" "-k" ;;
     "--gen-dockerfile")    set -- "$@" "-K" ;;
     "--print-container")   set -- "$@" "-c" ;;
-    "--cuda")              set -- "$@" "-C" ;;
     "--yes")               set -- "$@" "-y" ;;
     "--YES")               set -- "$@" "-Y" ;;
     "--status")            set -- "$@" "-s" ;;
@@ -2990,7 +2988,7 @@ for arg in "$@"; do
 done
 
 # Parse command-line options
-while getopts ":adDrRpPginkKcCyYsefmqvVShu:t:o" opt; do
+while getopts ":adDrRpPginkKcyYsefmqvVShu:t:o" opt; do
   case $opt in
     a )
       ARG_all=true
@@ -3061,9 +3059,6 @@ while getopts ":adDrRpPginkKcCyYsefmqvVShu:t:o" opt; do
       ;;
     c )
       ARG_print_container=true
-      ;;
-    C )
-      ARG_cuda="$OPTARG"
       ;;
     y )
       ARG_yes=true
