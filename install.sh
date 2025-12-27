@@ -212,8 +212,8 @@ determine_system_and_cfg_file() {
   SYS_OS_version=$(lsb_release -rs 2>/dev/null)
   SYS_OS_version=${SYS_OS_version//_/-}
   SYS_OS_version=${SYS_OS_version//./}
-  #SYS_arch=$(dpkg --print-architecture 2>/dev/null)
-  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-${arch}.yaml"}
+  SYS_arch=$(arch 2>/dev/null)
+  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-$SYS_arch.yaml"}
 }
 
 trace() {
