@@ -198,7 +198,7 @@ determine_system_and_cfg_file() {
   SYS_OS_version=$(lsb_release -rs 2>/dev/null)
   SYS_OS_version=${SYS_OS_version//_/-}
   SYS_OS_version=${SYS_OS_version//./}
-  SYS_arch=$(arch)
+  SYS_arch="amd64"
   if [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel.yaml" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml"}
   elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml" ]]; then
