@@ -193,13 +193,27 @@ VENV=${VENV:-"venv"}
 ACTIVATE="$VENV/bin/activate"
 AX_HOME="${HOME}/.cache/axelera"
 
+
+arch() {
+  if [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "GenuineIntel" ]]; then
+  return "intel64"
+  elif [[ $(lscpu | awk '/Vendor ID:/{print $2}' 2>/dev/null) == "AuthenticAMD" ]]; then
+  return "amd64"
+  elif [[ $(uname -m 2>/dev/null) == "arm64" ]]; then
+  return "arm64"
+  else
+  return false
+  fi
+}
+
+
 determine_system_and_cfg_file() {
   SYS_OS_name=$(lsb_release -is 2>/dev/null)
   SYS_OS_version=$(lsb_release -rs 2>/dev/null)
   SYS_OS_version=${SYS_OS_version//_/-}
   SYS_OS_version=${SYS_OS_version//./}
   SYS_arch=$(dpkg --print-architecture 2>/dev/null)
-  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-$SYS_arch.yaml"}
+  SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name,,}-$SYS_OS_version-${arch}.yaml"}
 }
 
 trace() {
