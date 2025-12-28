@@ -16,6 +16,8 @@ PKG_CONFIG_PATH := $(AXELERA_RUNTIME_DIR)/lib/pkgconfig:$(PKG_CONFIG_PATH)
 
 INSTALL_DIR := $(PREFIX_DIR)/lib
 
+ARCHX := $(shell uname -m)
+ifeq ($(ARCHX),arm64)
 ARCH := $(shell uname -p)
 ifeq ($(ARCH),arm64)
   ONNX_RUNTIME_ARCH := aarch64
@@ -30,13 +32,16 @@ else
 endif
 endif
 endif
+else
+ifeq ($(ARCHX),x86_64)
 ARCH2 := $(shell uname -m)
 ifeq ($(ARCH2),x86_64)
   ONNX_RUNTIME_ARCH := x64
 else
   $(error Unsupported architecture: $(ARCH2) "$(MACHINE_ARCH)")
 endif
-
+endif
+endif
 OS := $(shell uname -s)
 ifeq ($(OS),Linux)
   ONNX_RUNTIME_OS := linux
