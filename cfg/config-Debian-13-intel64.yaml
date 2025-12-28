@@ -20,8 +20,8 @@ vars:
 installer_dependencies:
   - git
   - kmod
-  - llvm-*
-  - llvm-*-dev
+  - llvm-14
+  - llvm-14-dev
   - make
   - wget
 
