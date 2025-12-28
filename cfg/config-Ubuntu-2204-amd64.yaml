@@ -20,8 +20,6 @@ vars:
 installer_dependencies:
   - git
   - kmod
-  - rocm-llvm
-  - rocm-llvm-dev
   - make
   - wget
 
@@ -290,8 +288,16 @@ driver:
   libs:
     - metis-dkms == 1.4.4
     - axelera-multi-device == 1.0.0
-
+    
 repositories:
+  - list: /etc/apt/sources.list.d/rocm.list
+    packages:
+      - amdgpu-dkms
+      - rocm*
+    gpg-url: https://repo.radeon.com/rocm/rocm.gpg.key
+    gpg-key: /etc/apt/keyrings/rocm.gpg
+    sources: 
+      - https://repo.radeon.com/rocm/apt/6.1.2 jammy main
   - list: /etc/apt/sources.list.d/docker.list
     packages:
       - docker-ce
