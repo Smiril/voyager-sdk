@@ -202,7 +202,7 @@ determine_system_and_cfg_file() {
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-amd64.yaml"}
   elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml" ]] || [[ $(uname -m  2>/dev/null) == "arm64" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-arm64.yaml"}
-  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml" ]] || [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "GenuineIntel" ]]; then
+  elif [[ -f "cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml" ]] || [[ $($(lscpu | awk '/Vendor ID:/{print $2}')  2>/dev/null) == "GeniuneIntel" ]]; then
   SYS_config=${SYS_config:-"cfg/config-${SYS_OS_name}-${SYS_OS_version}-intel64.yaml"}
   fi
 }
